@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
+import { ScheduleModule } from './schedule/schedule.module';
+import { EthersService } from './ethers/ethers.service';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -9,9 +12,10 @@ import { AppService } from './app.service';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ScheduleModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
-  exports: [],
+  providers: [AppService, EthersService],
+  exports: [EthersService],
 })
 export class AppModule {}
