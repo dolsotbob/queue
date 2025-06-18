@@ -15,7 +15,7 @@ export class SqsConsumer {
     @Inject(Logger)
     private readonly logger = new Logger(SqsConsumer.name),
     private readonly ethersService: EthersService
-  ) {}
+  ) { }
 
   async receive(): Promise<ReceivedMessage[]> {
     const sqs = this.sqsService.getSQSCliendt();
@@ -82,6 +82,7 @@ export class SqsConsumer {
             executeSyncElements.messageHandle,
             executeSyncElements.messageId
           );
+          // DB 저장 
           continue;
         }
       } catch (err) {
@@ -90,6 +91,8 @@ export class SqsConsumer {
             "error":"${err.message}"
           }`
         );
+
+        // DB 저장 
 
         await this.delete(
           executeSyncElements.messageHandle,
