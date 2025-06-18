@@ -1,3 +1,4 @@
+
 import { Injectable, Logger } from '@nestjs/common';
 import { EthersService } from '../../ethers/ethers.service';
 import { SqsProducer } from '../../sqs/services/sqs.producer';
@@ -9,7 +10,7 @@ export class ScheduleService {
   constructor(
     private readonly ethersService: EthersService,
     private readonly sqsProducer: SqsProducer
-  ) {}
+  ) { }
 
   async tenTimesOneEthTransfer() {
     const start = Date.now();
